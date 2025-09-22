@@ -40,3 +40,6 @@ class PlayerManager:
         if(attended[SATURDAY] + attended[SUNDAY] >= 10):
             score += 10
         return score
+
+    def is_falling(self, grade, attended):
+        return False

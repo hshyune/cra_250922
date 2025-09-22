@@ -32,6 +32,7 @@ def test_scoring(attended: list, expected_score: int):
     player_mgr = PlayerManager()
     assert player_mgr.scoring(attended) == expected_score
 
+
 def test_grade_10():
     player = Player("test")
     player.score = 10
@@ -40,6 +41,7 @@ def test_grade_10():
     expected_grade = "Normal"
 
     assert result_player.grade == expected_grade
+
 
 def test_grade_20():
     player = Player("test")
@@ -50,6 +52,7 @@ def test_grade_20():
 
     assert result_player.grade == expected_grade
 
+
 def test_grade_30():
     player = Player("test")
     player.score = 30
@@ -58,6 +61,7 @@ def test_grade_30():
     expected_grade = "Silver"
 
     assert result_player.grade == expected_grade
+
 
 def test_grade_40():
     player = Player("test")
@@ -68,6 +72,7 @@ def test_grade_40():
 
     assert result_player.grade == expected_grade
 
+
 def test_grade_50():
     player = Player("test")
     player.score = 50
@@ -76,3 +81,21 @@ def test_grade_50():
     expected_grade = "Gold"
 
     assert result_player.grade == expected_grade
+
+
+@pytest.mark.parametrize(
+    "attended, grade, expected",
+    [
+        ([9, 1, 6, 2, 4, 4, 3], "Silver", False),
+        ([4, 7, 2, 5, 5, 3, 6], "Gold", False),
+        ([0, 0, 0, 0, 0, 0, 0], "Normal", False),
+        ([0, 0, 1, 0, 0, 0, 0], "Normal", False),
+        ([0, 0, 0, 0, 0, 1, 0], "Normal", False),
+        ([0, 0, 0, 0, 0, 1, 1], "Normal", False),
+        ([0, 0, 0, 0, 0, 0, 1], "Normal", False),
+        ([0, 0, 1, 0, 0, 0, 1], "Normal", False),
+    ],
+)
+def test_is_falling(attended, grade, expected):
+    player_mgr = PlayerManager()
+    assert player_mgr.is_falling(grade, attended) == True
