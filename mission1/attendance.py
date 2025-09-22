@@ -1,3 +1,37 @@
+MONDAY = 0
+TUESDAY = 1
+WEDNESDAY = 2
+THURSDAY = 3
+FRIDAY = 4
+SATURDAY = 5
+SUNDAY = 6
+
+PLAYER_NUMBER = 0
+
+GOLD = "Gold"
+SILVER = "Silver"
+NORMAL = "Normal"
+
+players = {}
+# player
+"""
+{
+    "Tina": {
+        "number" : 16,
+        "attended" : [],
+        "score": 24,
+        "grade": "Normal"
+    },
+    "Will": {
+        "number" : 17,
+        "attended" : [],
+        "score": 46,
+        "grade": "Silver"
+    },
+    ...
+}
+"""
+
 id1 = {}
 id_cnt = 0
 
