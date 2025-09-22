@@ -1,3 +1,2 @@
-from ..src.id_manager import IdManager
+from ..src.player_manager import PlayerManager
 from ..src.player import Player
-from ..src.score import Score

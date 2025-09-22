@@ -107,13 +107,12 @@ def insert_player_data(name, attendance_weekday):
             "score": 0,
             "grade": None,
         }
-        
 
     # scoring and grading
     index, score = get_score(attendance_weekday)
     try:
         player = players.get(name)
-        player["attended"][index] += score
+        player["attended"][index] += 1
         player["score"] += score
     except IndexError as ie:
         pass
@@ -140,7 +139,7 @@ def input_file():
         print("\nRemoved player")
         print("==============")
         for name, player in players.items():
-            print(f'{player["attended"]}/{player["score"]}')
+            print(player["attended"])
             if is_falling(player):
                 print(name)
 

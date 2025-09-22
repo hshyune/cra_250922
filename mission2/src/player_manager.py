@@ -7,7 +7,7 @@ def singleton(cls):
     return wrapper
 
 @singleton
-class IdManager:
+class PlayerManager:
     id = 0
     def get_number(self):
         self.id += 1
