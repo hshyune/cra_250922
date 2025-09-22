@@ -32,45 +32,47 @@ def test_scoring(attended: list, expected_score: int):
     player_mgr = PlayerManager()
     assert player_mgr.scoring(attended) == expected_score
 
-
-@pytest.fixture
-def create_10_fixture():
-    fixture = Player("test")
-    fixture.score = 10
-    return fixture
-
-def create_20_fixture():
-    fixture = Player("test")
-    fixture.score = 20
-    return fixture
-
-def create_30_fixture():
-    fixture = Player("test")
-    fixture.score = 30
-    return fixture
-
-def create_40_fixture():
-    fixture = Player("test")
-    fixture.score = 40
-    return fixture
-
-def create_50_fixture():
-    fixture = Player("test")
-    fixture.score = 50
-    return fixture
-
-
-@pytest.mark.parametrize(
-    "player, expected_player",
-    [
-        (create_10_fixture, "Normal"),
-        (create_20_fixture, "Normal"),
-        (create_30_fixture, "Silver"),
-        (create_40_fixture, "Silver"),
-        (create_50_fixture, "Gold"),
-    ],
-)
-def test_grade(player: Player, expected_player: Player):
+def test_grade_10():
+    player = Player("test")
+    player.score = 10
     player_factory = PlayerFactory()
-    
-    assert False
+    result_player = player_factory.classifyPlayer(player)
+    expected_grade = "Normal"
+
+    assert result_player.grade == expected_grade
+
+def test_grade_20():
+    player = Player("test")
+    player.score = 20
+    player_factory = PlayerFactory()
+    result_player = player_factory.classifyPlayer(player)
+    expected_grade = "Normal"
+
+    assert result_player.grade == expected_grade
+
+def test_grade_30():
+    player = Player("test")
+    player.score = 30
+    player_factory = PlayerFactory()
+    result_player = player_factory.classifyPlayer(player)
+    expected_grade = "Silver"
+
+    assert result_player.grade == expected_grade
+
+def test_grade_40():
+    player = Player("test")
+    player.score = 40
+    player_factory = PlayerFactory()
+    result_player = player_factory.classifyPlayer(player)
+    expected_grade = "Silver"
+
+    assert result_player.grade == expected_grade
+
+def test_grade_50():
+    player = Player("test")
+    player.score = 50
+    player_factory = PlayerFactory()
+    result_player = player_factory.classifyPlayer(player)
+    expected_grade = "Gold"
+
+    assert result_player.grade == expected_grade

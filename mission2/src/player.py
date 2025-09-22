@@ -11,18 +11,16 @@ SUNDAY = 6
 
 
 class Player(ABC):
-
     def __init__(self, name):
         self.name = name
-        self.number  = PlayerManager().get_number()
+        self.number = PlayerManager().get_number()
         self.attended = [0, 0, 0, 0, 0, 0, 0]
         self.score = 0
         self.grade = None
-    
 
-    @abstractmethod
-    def estimate(self):
-        pass
+
+    def set_score(self, score: int):
+        self.score = score
 
     def attend(self, weekday: str):
         if weekday == "monday":
@@ -39,30 +37,31 @@ class Player(ABC):
             self.attended[SATURDAY] += 1
         elif weekday == "sunday":
             self.attended[SUNDAY] += 1
-    
+
+
 class GoldPlayer(Player):
-    def estimate(self):
-        self.grade = "Gold"
-        return super().estimate()
+    pass
 
 
 class SilverPlayer(Player):
-    def estimate(self):
-        self.grade = "Silver"
-        return super().estimate()
+    pass
 
 
 class NormalPlayer(Player):
-    def estimate(self):
-        self.grade = "Normal"
-        return super().estimate()
+    pass
+
 
 class PlayerFactory:
     def classifyPlayer(self, player: Player):
         if player.score >= 50:
-            return GoldPlayer()
+            gold_player = GoldPlayer(player.name)
+            gold_player.grade = "Gold"
+            return gold_player
         elif player.score >= 30:
-            return SilverPlayer()
+            silver_player = SilverPlayer(player.name)
+            silver_player.grade = "Silver"
+            return silver_player
         else:
-            return NormalPlayer()
-    
+            normal_player = NormalPlayer(player.name)
+            normal_player.grade = "Normal"
+            return normal_player
