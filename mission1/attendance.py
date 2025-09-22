@@ -38,6 +38,57 @@ def get_player_number():
     PLAYER_NUMBER += 1
     return PLAYER_NUMBER
 
+def get_score(attended_weekday: str):
+    # get score by weekday
+    ## wednesday 3
+    ## weekend: saturday, sunday 2
+    ## others 1
+    index = 0
+    score = 0
+    if attended_weekday == "monday":
+        index = MONDAY
+        score = 1
+    elif attended_weekday == "tuesday":
+        index = TUESDAY
+        score = 1
+    elif attended_weekday == "wednesday":
+        index = WEDNESDAY
+        score = 3
+    elif attended_weekday == "thursday":
+        index = THURSDAY
+        score = 1
+    elif attended_weekday == "friday":
+        index = FRIDAY
+        score = 1
+    elif attended_weekday == "saturday":
+        index = SATURDAY
+        score = 2
+    elif attended_weekday == "sunday":
+        index = SUNDAY
+        score = 2
+    else:
+        index = -1
+        score = 0
+    return index, score
+
+def get_grade(player: dict):
+    # grading players by score
+    ## if player attended weekend and Wednesday more than or equal 10 days, player can receive bonus score. 
+    if player["attended"][WEDNESDAY] >= 10:
+        player["score"] += 10
+    if (player["attended"][SATURDAY] + player["attended"][SUNDAY]) >= 10:
+        player["score"] += 10
+        
+    # define grade
+    score = player["score"]
+    if score >= 50:
+        player["grade"] = GOLD
+    elif score >= 30:
+        player["grade"] = SILVER
+    else:
+        player["grade"] = NORMAL
+    return player["grade"]
+
 id1 = {}
 id_cnt = 0
 
