@@ -97,93 +97,50 @@ def is_falling(player: dict):
         return True
     return False
 
-id1 = {}
-id_cnt = 0
+def insert_player_data(name, attendance_weekday):
+    # if player not be inserted on memory, insert into memory
+    if name not in players:
+        player_number = get_player_number()
+        players[name] = {
+            "number": player_number,
+            "attended": [0, 0, 0, 0, 0, 0, 0],
+            "score": 0,
+            "grade": None,
+        }
 
-# dat[사용자ID][요일]
-dat = [[0] * 100 for _ in range(100)]
-points = [0] * 100
-grade = [0] * 100
-names = [''] * 100
-wed = [0] * 100
-weeken = [0] * 100
+    # scoring and grading
+    index, score = get_score(attendance_weekday)
+    try:
+        player = players.get(name)
+        player["attended"][index] += score
+        player["score"] += score
+    except IndexError as ie:
+        pass
 
-def input2(w, wk):
-    if w not in id1:
-        id = get_player_number()
-        id1[w] = id
-        names[id] = w
-
-    id2 = id1[w]
-
-    add_point = 0
-    index = 0
-
-    if wk == "monday":
-        index = 0
-        add_point += 1
-    elif wk == "tuesday":
-        index = 1
-        add_point += 1
-    elif wk == "wednesday":
-        index = 2
-        add_point += 3
-        wed[id2] += 1
-    elif wk == "thursday":
-        index = 3
-        add_point += 1
-    elif wk == "friday":
-        index = 4
-        add_point += 1
-    elif wk == "saturday":
-        index = 5
-        add_point += 2
-        weeken[id2] += 1
-    elif wk == "sunday":
-        index = 6
-        add_point += 2
-        weeken[id2] += 1
-
-    dat[id2][index] += 1
-    points[id2] += add_point
+    return score
 
 def input_file():
     try:
-        with open("attendance_weekday_500.txt", encoding='utf-8') as f:
+        with open("attendance_weekday_500.txt", encoding="utf-8") as f:
             for _ in range(500):
                 line = f.readline()
                 if not line:
                     break
                 parts = line.strip().split()
                 if len(parts) == 2:
-                    input2(parts[0], parts[1])
+                    insert_player_data(parts[0], parts[1])
 
-        for i in range(1, id_cnt + 1):
-            if dat[i][2] > 9:
-                points[i] += 10
-            if dat[i][5] + dat[i][6] > 9:
-                points[i] += 10
-
-            if points[i] >= 50:
-                grade[i] = 1
-            elif points[i] >= 30:
-                grade[i] = 2
-            else:
-                grade[i] = 0
-
-            print(f"NAME : {names[i]}, POINT : {points[i]}, GRADE : ", end="")
-            if grade[i] == 1:
-                print("GOLD")
-            elif grade[i] == 2:
-                print("SILVER")
-            else:
-                print("NORMAL")
+        for name, player in players.items():
+            get_grade(player)
+            print(
+                f"NAME : {name}, POINT : {player['score']}, GRADE : {player['grade']}"
+            )
 
         print("\nRemoved player")
         print("==============")
-        for i in range(1, id_cnt + 1):
-            if grade[i] not in (1, 2) and wed[i] == 0 and weeken[i] == 0:
-                print(names[i])
+        for name, player in players.items():
+            if is_falling(player):
+                print(name)
 
     except FileNotFoundError:
         print("파일을 찾을 수 없습니다.")
