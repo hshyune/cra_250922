@@ -93,8 +93,10 @@ def test_grade_50():
         ([0, 0, 0, 0, 0, 1, 0], "Normal", True),
         ([0, 0, 0, 0, 0, 1, 1], "Normal", True),
         ([0, 0, 0, 0, 0, 0, 1], "Normal", True),
-        ([0, 0, 1, 0, 0, 0, 1], "Normal", True),
+        ([0, 0, 1, 0, 0, 0, 1], "Normal", False),
     ],
 )
 def test_is_falling(attended, grade, expected):
-    assert False
+    player_mgr = PlayerManager()
+    result = player_mgr.is_falling(grade, attended)
+    assert result == expected

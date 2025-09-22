@@ -42,4 +42,7 @@ class PlayerManager:
         return score
 
     def is_falling(self, grade, attended):
+        if(grade == "Normal"):
+            if(attended[WEDNESDAY] == 0) or (attended[SATURDAY] + attended[SUNDAY] == 0):
+                return True
         return False
