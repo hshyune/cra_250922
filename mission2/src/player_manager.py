@@ -12,3 +12,5 @@ class IdManager:
     def get_number(self):
         self.id += 1
         return self.id
+    def init(self):
+        self.id = 0
