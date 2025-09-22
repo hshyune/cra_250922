@@ -112,7 +112,7 @@ def insert_player_data(name, attendance_weekday):
     index, score = get_score(attendance_weekday)
     try:
         player = players.get(name)
-        player["attended"][index] += score
+        player["attended"][index] += 1
         player["score"] += score
     except IndexError as ie:
         pass
