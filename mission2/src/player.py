@@ -13,11 +13,10 @@ SUNDAY = 6
 class Player(ABC):
     def __init__(self, name):
         self.name = name
-        self.number = PlayerManager().get_number()
+        self.number = 0
         self.attended = [0, 0, 0, 0, 0, 0, 0]
         self.score = 0
         self.grade = None
-
 
     def set_score(self, score: int):
         self.score = score
@@ -40,28 +39,46 @@ class Player(ABC):
 
 
 class GoldPlayer(Player):
-    pass
+    def __init__(self, name, number, attended, score):
+        self.name = name
+        self.number = number
+        self.attended = attended
+        self.score = score
+        self.grade = "Gold"
 
 
 class SilverPlayer(Player):
-    pass
+    def __init__(self, name, number, attended, score):
+        self.name = name
+        self.number = number
+        self.attended = attended
+        self.score = score
+        self.grade = "Silver"
 
 
 class NormalPlayer(Player):
-    pass
+    def __init__(self, name, number, attended, score):
+        self.name = name
+        self.number = number
+        self.attended = attended
+        self.score = score
+        self.grade = "Normal"
 
 
 class PlayerFactory:
     def classifyPlayer(self, player: Player):
         if player.score >= 50:
-            gold_player = GoldPlayer(player.name)
-            gold_player.grade = "Gold"
+            gold_player = GoldPlayer(
+                player.name, player.number, player.attended, player.score
+            )
             return gold_player
         elif player.score >= 30:
-            silver_player = SilverPlayer(player.name)
-            silver_player.grade = "Silver"
+            silver_player = SilverPlayer(
+                player.name, player.number, player.attended, player.score
+            )
             return silver_player
         else:
-            normal_player = NormalPlayer(player.name)
-            normal_player.grade = "Normal"
+            normal_player = NormalPlayer(
+                player.name, player.number, player.attended, player.score
+            )
             return normal_player
