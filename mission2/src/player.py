@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from ..src.player_manager import PlayerManager
 
 MONDAY = 0
 TUESDAY = 1
@@ -10,13 +11,14 @@ SUNDAY = 6
 
 
 class Player(ABC):
+
     def __init__(self, name):
-        self.id = 0
         self.name = name
-        self.number = 0
+        self.number  = PlayerManager().get_number()
         self.attended = [0, 0, 0, 0, 0, 0, 0]
         self.score = 0
         self.grade = None
+    
 
     @abstractmethod
     def estimate(self):

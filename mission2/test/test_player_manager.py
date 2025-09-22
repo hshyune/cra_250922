@@ -1,6 +1,7 @@
 import pytest
 from ..src.player_manager import PlayerManager
-from ..src.player import Player
+from ..src.player import Player, PlayerFactory, GoldPlayer, SilverPlayer, NormalPlayer
+
 
 @pytest.mark.parametrize("id", [1, 3, 5, 7, 100, 5000])
 def test_player_number(id: int):
@@ -10,7 +11,6 @@ def test_player_number(id: int):
     for i in range(id - 1):
         player_mgr.get_number()
     assert id == player_mgr.get_number()
-
 
 
 @pytest.mark.parametrize(
@@ -30,5 +30,47 @@ def test_player_number(id: int):
 )
 def test_scoring(attended: list, expected_score: int):
     player_mgr = PlayerManager()
-
     assert player_mgr.scoring(attended) == expected_score
+
+
+@pytest.fixture
+def create_10_fixture():
+    fixture = Player("test")
+    fixture.score = 10
+    return fixture
+
+def create_20_fixture():
+    fixture = Player("test")
+    fixture.score = 20
+    return fixture
+
+def create_30_fixture():
+    fixture = Player("test")
+    fixture.score = 30
+    return fixture
+
+def create_40_fixture():
+    fixture = Player("test")
+    fixture.score = 40
+    return fixture
+
+def create_50_fixture():
+    fixture = Player("test")
+    fixture.score = 50
+    return fixture
+
+
+@pytest.mark.parametrize(
+    "player, expected_player",
+    [
+        (create_10_fixture, "Normal"),
+        (create_20_fixture, "Normal"),
+        (create_30_fixture, "Silver"),
+        (create_40_fixture, "Silver"),
+        (create_50_fixture, "Gold"),
+    ],
+)
+def test_grade(player: Player, expected_player: Player):
+    player_factory = PlayerFactory()
+    
+    assert False
