@@ -4,12 +4,12 @@ from ..src.player import Player
 
 @pytest.mark.parametrize("id", [1, 3, 5, 7, 100, 5000])
 def test_player_number(id: int):
-    id_mgr = PlayerManager()
-    id_mgr.init()
+    player_mgr = PlayerManager()
+    player_mgr.init()
 
     for i in range(id - 1):
-        id_mgr.get_number()
-    assert id == id_mgr.get_number()
+        player_mgr.get_number()
+    assert id == player_mgr.get_number()
 
 
 
@@ -29,4 +29,6 @@ def test_player_number(id: int):
     ],
 )
 def test_scoring(attended: list, expected_score: int):
-    assert PlayerManager().scoring(attended) == expected_score
+    player_mgr = PlayerManager()
+
+    assert player_mgr.scoring(attended) == expected_score

@@ -25,25 +25,18 @@ class Player(ABC):
     def attend(self, weekday: str):
         if weekday == "monday":
             self.attended[MONDAY] += 1
-            self.score += 1
         elif weekday == "tuesday":
             self.attended[TUESDAY] += 1
-            self.score += 1
         elif weekday == "wednesday":
             self.attended[WEDNESDAY] += 1
-            self.score += 3
         elif weekday == "thursday":
             self.attended[THURSDAY] += 1
-            self.score += 1
         elif weekday == "friday":
             self.attended[FRIDAY] += 1
-            self.score += 1
         elif weekday == "saturday":
             self.attended[SATURDAY] += 1
-            self.score += 2
         elif weekday == "sunday":
             self.attended[SUNDAY] += 1
-            self.score += 2
     
 class GoldPlayer(Player):
     def estimate(self):
