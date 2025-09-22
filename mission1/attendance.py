@@ -89,6 +89,14 @@ def get_grade(player: dict):
         player["grade"] = NORMAL
     return player["grade"]
 
+def is_falling(player: dict):
+    attended = player["attended"]
+    if (player["grade"] == NORMAL) and (
+        (attended[WEDNESDAY] + attended[SATURDAY] + attended[SUNDAY]) == 0
+    ):
+        return True
+    return False
+
 id1 = {}
 id_cnt = 0
 
