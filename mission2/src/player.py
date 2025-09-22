@@ -26,3 +26,4 @@ class NormalPlayer(Player):
     def estimate(self):
         self.grade = "Normal"
         return super().estimate()
+    

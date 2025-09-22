@@ -107,6 +107,7 @@ def insert_player_data(name, attendance_weekday):
             "score": 0,
             "grade": None,
         }
+        
 
     # scoring and grading
     index, score = get_score(attendance_weekday)
