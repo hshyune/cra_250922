@@ -32,6 +32,12 @@ players = {}
 }
 """
 
+def get_player_number():
+    # get player number from 1
+    global PLAYER_NUMBER
+    PLAYER_NUMBER += 1
+    return PLAYER_NUMBER
+
 id1 = {}
 id_cnt = 0
 
@@ -44,12 +50,10 @@ wed = [0] * 100
 weeken = [0] * 100
 
 def input2(w, wk):
-    global id_cnt
-
     if w not in id1:
-        id_cnt += 1
-        id1[w] = id_cnt
-        names[id_cnt] = w
+        id = get_player_number()
+        id1[w] = id
+        names[id] = w
 
     id2 = id1[w]
 
