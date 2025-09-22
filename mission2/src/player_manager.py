@@ -14,3 +14,6 @@ class PlayerManager:
         return self.id
     def init(self):
         self.id = 0
+    
+    def scoring(attended: list):
+        return 0
