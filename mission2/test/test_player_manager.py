@@ -88,14 +88,13 @@ def test_grade_50():
     [
         ([9, 1, 6, 2, 4, 4, 3], "Silver", False),
         ([4, 7, 2, 5, 5, 3, 6], "Gold", False),
-        ([0, 0, 0, 0, 0, 0, 0], "Normal", False),
-        ([0, 0, 1, 0, 0, 0, 0], "Normal", False),
-        ([0, 0, 0, 0, 0, 1, 0], "Normal", False),
-        ([0, 0, 0, 0, 0, 1, 1], "Normal", False),
-        ([0, 0, 0, 0, 0, 0, 1], "Normal", False),
-        ([0, 0, 1, 0, 0, 0, 1], "Normal", False),
+        ([0, 0, 0, 0, 0, 0, 0], "Normal", True),
+        ([0, 0, 1, 0, 0, 0, 0], "Normal", True),
+        ([0, 0, 0, 0, 0, 1, 0], "Normal", True),
+        ([0, 0, 0, 0, 0, 1, 1], "Normal", True),
+        ([0, 0, 0, 0, 0, 0, 1], "Normal", True),
+        ([0, 0, 1, 0, 0, 0, 1], "Normal", True),
     ],
 )
 def test_is_falling(attended, grade, expected):
-    player_mgr = PlayerManager()
-    assert player_mgr.is_falling(grade, attended) == True
+    assert False
