@@ -1,5 +1,5 @@
 import pytest
-from ..src.player_manager import IdManager
+from ..src.id_manager import IdManager
 
 @pytest.mark.parametrize("id", [1, 3, 5, 7, 100, 5000])
 def test_player_number(id: int):

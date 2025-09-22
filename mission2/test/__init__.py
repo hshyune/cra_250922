@@ -1,1 +1,1 @@
-from ..src.player_manager import IdManager
+from ..src.id_manager import IdManager

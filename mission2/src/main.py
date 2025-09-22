@@ -1,5 +1,3 @@
-from player import Player
-
 MONDAY = 0
 TUESDAY = 1
 WEDNESDAY = 2
