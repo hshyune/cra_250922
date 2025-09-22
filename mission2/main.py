@@ -140,6 +140,7 @@ def input_file():
         print("\nRemoved player")
         print("==============")
         for name, player in players.items():
+            print(f'{player["attended"]}/{player["score"]}')
             if is_falling(player):
                 print(name)
 

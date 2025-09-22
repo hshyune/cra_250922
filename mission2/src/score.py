@@ -1,4 +1,3 @@
-from player import Player
 class Score:
-    def estimate(player: Player):
+    def estimate(attended: list):
         return 0
